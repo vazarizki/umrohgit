@@ -293,76 +293,30 @@ body{
                 <th>ID</th>
                 <th>Judul</th>
                 <th>Harga</th>
-                <th>gambar</th>
+               
                 <th class="col-actions">Aksi</th>
               </tr>
             </thead>
-            <tbody>
-              <!-- Contoh baris (nanti ganti pakai loop PHP) -->
-                <?php while($p = $produk->fetch_assoc()): ?>
-              <tr>
-                <td>1</td>
-                <td><?= $p['judul']?></td>
-                <td>Rp. <?= $p['harga']?></td>
-                <td><span class="chip chip--success">Publish</span></td>
-                <td class="actions">
-                  <a href="#" class="link">Edit</a>
-                  <a href="#" class="link link--danger">Hapus</a>
-                </td>
-              </tr>
-               <?php endwhile; ?>
-              <!-- /Contoh -->
-            </tbody>
+
+  <tbody>
+  <?php while($p = $produk->fetch_assoc()): ?>
+  <tr>
+    <td><?= $p['id']?></td>
+    <td><?= $p['judul']?></td>
+    <td>Rp. <?= $p['harga']?></td>
+    <td><span class="chip chip--success">Publish</span></td>
+    <td class="actions">
+      <a href="view/editproduk.php?type=produk&id=<?= $p['id'] ?>" class="link">Edit</a>
+      <a href=" backend.php?type=produk&id=<?= $p['id'] ?>" class="link link--danger" onclick="return confirm('Apakah Anda yakin ingin menghapus produk ini?');">Hapus</a>
+    </td>
+  </tr>
+  <?php endwhile; ?>
+</tbody>
           </table>
         </div>
       </div>
 
-      <!-- FORM PRODUK -->
-      <div id="form-produk" class="card form">
-        <h3>Tambah / Edit Produk</h3>
-        <!-- nanti ubah action ke file PHP: action="products.php" method="POST" -->
-        <form>
-          <div class="grid grid--2">
-            <div class="field">
-              <label class="label">Judul Produk</label>
-              <input class="input" name="title" type="text" placeholder="Paket Umroh Hemat" required />
-            </div>
-            <div class="field">
-              <label class="label">Harga (Rp)</label>
-              <input class="input" name="price" type="number" placeholder="25000000" required />
-            </div>
-            <div class="field">
-              <label class="label">Durasi (hari)</label>
-              <input class="input" name="duration" type="number" placeholder="9" />
-            </div>
-            <div class="field">
-              <label class="label">Tanggal Keberangkatan</label>
-              <input class="input" name="departure_date" type="date" />
-            </div>
-            <div class="field">
-              <label class="label">URL Gambar (opsional)</label>
-              <input class="input" name="image_url" type="url" placeholder="https://…" />
-            </div>
-            <div class="field">
-              <label class="label">Status</label>
-              <select class="input" name="status">
-                <option value="publish">Publish</option>
-                <option value="draft">Draft</option>
-              </select>
-            </div>
-          </div>
-          <div class="field">
-            <label class="label">Deskripsi</label>
-            <textarea class="input input--textarea" name="description" rows="6" placeholder="Deskripsi singkat paket…"></textarea>
-          </div>
-          <div class="form__actions">
-            <button class="btn" type="submit">Simpan</button>
-            <button class="btn btn--ghost" type="reset">Reset</button>
-          </div>
-        </form>
-      </div>
-    </section>
-
+     
     <!-- BLOG -->
     <section id="blog" class="section">
       <div class="section__header">
