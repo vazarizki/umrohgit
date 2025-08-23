@@ -941,46 +941,29 @@ $produk = $conn->query("SELECT * FROM produk");
   </div>
 
   <div class="grid" id="productGrid">
-    <!-- 12 dummy products -->
+    <!-- 6 dummy products -->
 
     <?php while($p = $produk->fetch_assoc()): ?>
     <article class="card" data-cat="hemat">
-      <div class="thumb"><span class="tag">9 Hari</span>
-      <img src="https://media.istockphoto.com/id/482206266/photo/kaaba-in-mecca.jpg?s=612x612&w=0&k=20&c=wwzNu3XMQpCRVdAcBbeerUGaew0Fk2nGPQkH98Wj474=" alt=""></div>
-      <div class="body">
-        <div class="title"><?= $p['judul']?></div>
-      <div class="meta">
-        <span><?= $p['deskripsi']?></span>
-      </div>
-        <div class="price">Rp <?= $p['harga']?></div>
-        <div class="cta-row"><button class="btn">Pesan</button><a class="btn outline" href="detailproduct.php?id=<?= $p['id'] ?>">Detail</a></div>
-      </div>
+        <div class="thumb">
+            <span class="tag">9 Hari</span>
+            <!-- Perbaikan ada di sini: menambahkan 'assets/' -->
+            <img src="assets/<?= htmlspecialchars($p['gambar']) ?>" alt="<?= htmlspecialchars($p['judul']) ?>">
+        </div>
+        <div class="body">
+            <div class="title"><?= htmlspecialchars($p['judul']) ?></div>
+            <div class="meta">
+                <span><?= htmlspecialchars($p['isi']) ?></span>
+            </div>
+            <div class="price">Rp <?= htmlspecialchars($p['harga']) ?></div>
+            <div class="cta-row">
+                <button class="btn">Pesan</button>
+                <a class="btn outline" href="detailproduct.php?id=<?= htmlspecialchars($p['id']) ?>">Detail</a>
+            </div>
+        </div>
     </article>
-    <?php endwhile; ?>
-    
-    <?php while($p = $produk->fetch_assoc()): ?>
-    <article class="card" data-cat="reguler">
-      <div class="thumb"><span class="tag">10 Hari</span><img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=1200&auto=format&fit=crop" alt=""></div>
-      <div class="body"><div class="title">Umroh Reguler</div><div class="meta"><span>Hotel ★★★★</span><span>Direct Flight</span></div><div class="price">Rp 28,5 Jt</div><div class="cta-row"><button class="btn">Pesan</button><a class="btn outline" href="detail-product.html">Detail</a></div></div>
-    </article>
-    <?php endwhile; ?>
-    <article class="card" data-cat="vip">
-      <div class="thumb"><span class="tag">9 Hari</span><img src="https://media.istockphoto.com/id/482206266/photo/kaaba-in-mecca.jpg?s=612x612&w=0&k=20&c=wwzNu3XMQpCRVdAcBbeerUGaew0Fk2nGPQkH98Wj474=" alt=""></div>
-      <div class="body"><div class="title">Umroh VIP</div><div class="meta"><span>Hotel ★★★★★</span><span>Business Lounge</span></div><div class="price">Rp 39,9 Jt</div><div class="cta-row"><button class="btn">Pesan</button><a class="btn outline" href="detail-product.html">Detail</a></div></div>
-    </article>
-    <article class="card" data-cat="plus">
-      <div class="thumb"><span class="tag">12 Hari</span><img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=1200&auto=format&fit=crop" alt=""></div>
-      <div class="body"><div class="title">Umroh Plus Turki</div><div class="meta"><span>Istanbul Tour</span><span>Hotel ★★★★</span></div><div class="price">Rp 35,5 Jt</div><div class="cta-row"><button class="btn">Pesan</button><a class="btn outline" href="detail-product.html">Detail</a></div></div>
-    </article>
-    <article class="card" data-cat="plus">
-      <div class="thumb"><span class="tag">11 Hari</span><img src="https://th.bing.com/th/id/OIP.6hU3r4FUC6QxLYQnoAP_FwHaEw?w=256&h=180&c=7&r=0&o=7&pid=1.7&rm=3" alt=""></div>
-      <div class="body"><div class="title">Umroh Plus Dubai</div><div class="meta"><span>City Tour</span><span>Hotel ★★★★</span></div><div class="price">Rp 34,2 Jt</div><div class="cta-row"><button class="btn">Pesan</button><a class="btn outline" href="detail-product.html">Detail</a></div></div>
-    </article>
-    <article class="card" data-cat="reguler">
-      <div class="thumb"><span class="tag">10 Hari</span><img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=1200&auto=format&fit=crop" alt=""></div>
-      <div class="body"><div class="title">Madinah First</div><div class="meta"><span>Efisien</span><span>Hotel ★★★★</span></div><div class="price">Rp 29,7 Jt</div><div class="cta-row"><button class="btn">Pesan</button><a class="btn outline" href="detail-product.html">Detail</a></div></div>
-    </article>
-  </div>
+<?php endwhile; ?>
+</div>
 </section>
 
 <!-- Banner App 

@@ -61,7 +61,7 @@ body {
 
 .product-img {
   width: 100%;
-  max-height: 400px;
+  max-height: auto;
   object-fit: cover;
   border-radius: 8px;
   margin-bottom: 16px;
@@ -199,7 +199,7 @@ body {
   }
 
   .product-img {
-    max-height: 300px;
+    max-height: auto;
   }
 }
 
@@ -248,8 +248,8 @@ body {
   <!-- Bagian Kiri: Konten Produk -->
   <div class="product-detail">
 
-<img src="assets/slider1.jpeg" class="product-img">
-   <!-- <img src="uploads/<?= htmlspecialchars($p['gambar']) ?>" alt="<?= htmlspecialchars($p['gambar']) ?>" class="product-img"> -->
+
+ <img src="assets/<?= htmlspecialchars($p['gambar']) ?>" alt="<?= htmlspecialchars($p['gambar']) ?>" class="product-img">
   
    <h1 class="product-title"><?= htmlspecialchars($p['judul']) ?></h1>
     <p class="product-desc"><?= nl2br(htmlspecialchars($p['deskripsi'])) ?></p>

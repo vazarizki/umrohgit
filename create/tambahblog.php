@@ -3,31 +3,55 @@ include "../config.php";
 
 // Cek jika form disubmit
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $judul   = $conn->real_escape_string($_POST['judul']);
-    $deskripsi = $conn->real_escape_string($_POST['deskripsi']);
-    $isi = $conn->real_escape_string($_POST['isi']);
+    // Memeriksa apakah ada file yang diunggah
+    if (isset($_FILES['gambar_blog']) && $_FILES['gambar_blog']['error'] == 0) {
+        // Mendefinisikan folder target untuk menyimpan gambar
+        $target_dir = "uploads/";
+        // Mendapatkan nama file
+        $gambar_name = basename($_FILES["gambar_blog"]["name"]);
+        // Mendefinisikan path lengkap untuk file yang diunggah
+        $target_file = $target_dir . $gambar_name;
 
-    $sql = "INSERT INTO blog (judul, isi, deskripsi) VALUES ('$judul', '$isi', '$deskripsi')";
-    if ($conn->query($sql) === TRUE) {
-        // redirect ke blogs.php setelah sukses
-        header("Location: ../backend.php#blog");
-        exit;
+        // Pindahkan file yang diunggah ke folder target
+        if (move_uploaded_file($_FILES["gambar_blog"]["tmp_name"], $target_file)) {
+            // Jika file berhasil diunggah, simpan data ke database
+            $judul = $conn->real_escape_string($_POST['judul']);
+            $deskripsi = $conn->real_escape_string($_POST['deskripsi']);
+            $isi = $conn->real_escape_string($_POST['isi']);
+            // Nama file gambar yang akan disimpan di database
+            $gambar_db = $gambar_name;
+
+            // Tambahkan kolom 'gambar' pada query INSERT
+            $sql = "INSERT INTO blog (judul, isi, deskripsi, gambar) VALUES ('$judul', '$isi', '$deskripsi', '$gambar_db')";
+            
+            if ($conn->query($sql) === TRUE) {
+                // redirect ke backend.php setelah sukses
+                header("Location: ../backend.php#blog");
+                exit;
+            } else {
+                echo "Error: " . $conn->error;
+            }
+        } else {
+            echo "Maaf, terjadi kesalahan saat mengunggah file Anda.";
+        }
     } else {
-        echo "Error: " . $conn->error;
+        echo "Maaf, Anda harus mengunggah file gambar.";
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
+     <link rel="icon" type="image/png" href="assets/TWS TP.png">
     <title>Tambah Blog</title>
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <style>
-    /* Form */
+/* Form */
 .form {
   max-width: 600px;
   margin: 20px auto;
@@ -62,7 +86,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   border-color: #ff6600;
   outline: none;
 }
-
 </style>
 
 <body>
@@ -70,13 +93,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <main class="container">
     <h2 class="page-title">Tambah Blog Baru</h2>
     
-    <form action="" method="POST" class="form">
+    <form action="" method="POST" enctype="multipart/form-data" class="form">
         <div class="form-group">
             <label for="judul">Judul Blog</label>
             <input type="text" id="title" name="judul" required>
         </div>
 
-         <div class="form-group">
+        <div class="form-group">
             <label for="deskripsi">Meta Deskripsi</label>
             <input type="text" id="deskripsi" name="deskripsi" required>
         </div>
@@ -87,10 +110,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
 
         <div class="field">
-            <label for="gambar">URL Gambar (opsional)</label>
-            <input class="input" name="gambar" type="url" placeholder="https://…" />
-          </div>
-          
+            <label for="gambar_blog">Gambar Artikel</label>
+            <input class="input" name="gambar_blog" type="file" required />
+        </div>
+        
         <button type="submit" class="btn">Simpan</button>
     </form>
 </main>

@@ -27,8 +27,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $harga = $_POST['harga'];
     $deskripsi = $_POST['deskripsi'];
     $isi = $_POST['isi'];
-    $stmt_update = $conn->prepare("UPDATE produk SET judul = ?, harga = ?, deskripsi = ?, isi = ? WHERE id = ?");
-    $stmt_update->bind_param("sissi", $judul, $harga, $deskripsi, $isi, $id);
+    $gambar_update = $data['gambar']; // Default: gunakan gambar lama
+
+    // Cek jika ada file gambar baru yang diunggah
+    if (isset($_FILES['gambar']) && $_FILES['gambar']['error'] == 0) {
+        $target_dir = "../assets/";
+        $gambar_name = basename($_FILES["gambar"]["name"]);
+        $target_file = $target_dir . $gambar_name;
+
+        // Pindahkan file baru
+        if (move_uploaded_file($_FILES["gambar"]["tmp_name"], $target_file)) {
+            $gambar_update = $gambar_name;
+        } else {
+            echo "Maaf, terjadi kesalahan saat mengunggah file baru.";
+        }
+    }
+
+    $stmt_update = $conn->prepare("UPDATE produk SET judul = ?, harga = ?, deskripsi = ?, isi = ?, gambar = ? WHERE id = ?");
+    // Perbaikan pada bind_param: sss ssi
+    $stmt_update->bind_param("sssssi", $judul, $harga, $deskripsi, $isi, $gambar_update, $id);
 
     if ($stmt_update->execute()) {
         header("Location: ../backend.php");
@@ -102,7 +119,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         input[type="text"],
         input[type="number"],
-        textarea {
+        textarea,
+        input[type="file"] {
             width: 100%;
             padding: 0.75rem 1rem;
             border: 1px solid var(--border-color);
@@ -115,7 +133,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         input[type="text"]:focus,
         input[type="number"]:focus,
-        textarea:focus {
+        textarea:focus,
+        input[type="file"]:focus {
             outline: none;
             border-color: var(--primary-color);
             box-shadow: 0 0 0 3px rgba(76, 81, 191, 0.1);
@@ -170,7 +189,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="container">
         <h1>Edit Produk</h1>
 
-        <form method="POST">
+        <form method="POST" enctype="multipart/form-data">
             <div>
                 <label for="judul">Judul Produk:</label>
                 <input type="text" id="judul" name="judul" value="<?= htmlspecialchars($data['judul']) ?>" required>
@@ -180,12 +199,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="number" id="harga" name="harga" value="<?= htmlspecialchars($data['harga']) ?>" required>
             </div>
             <div>
-                <label for="deskripsi">Meta Deskripsi</label>
+                <label for="deskripsi">Detail Produk</label>
                 <input type="text" id="deskripsi" name="deskripsi" value="<?= htmlspecialchars($data['deskripsi']) ?>" required>
             </div>
-             <div>
-                <label for="isi">Isi Produk</label>
+            <div>
+                <label for="isi">>Meta Deskripsi</label>
                 <input type="text" id="isi" name="isi" value="<?= htmlspecialchars($data['isi']) ?>" required>
+            </div>
+            <div>
+                <label for="current_gambar">Gambar Saat Ini:</label>
+                <img src="../assets/<?= htmlspecialchars($data['gambar']) ?>" alt="Gambar Produk" style="max-width: 150px; display: block; margin-top: 10px;">
+            </div>
+            <div>
+                <label for="gambar">Pilih Gambar Baru:</label>
+                <input type="file" id="gambar" name="gambar">
             </div>
             <div class="actions">
                 <button type="submit">Simpan Perubahan</button>

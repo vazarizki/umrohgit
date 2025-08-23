@@ -1,6 +1,22 @@
 <?php
 include "config.php";
 
+// Logika untuk menghapus produk
+if (isset($_GET['id']) && isset($_GET['type']) && $_GET['type'] === 'produk') {
+    $id = $_GET['id'];
+    
+    // Gunakan prepared statement untuk keamanan
+    $stmt = $conn->prepare("DELETE FROM produk WHERE id = ?");
+    $stmt->bind_param("i", $id);
+
+    if ($stmt->execute()) {
+        header("Location: backend.php?status=success_delete");
+        exit();
+    } else {
+        echo "Error: " . $stmt->error;
+    }
+}
+
 //ambil blog
 $blog = $conn->query("SELECT * FROM blog");
 
@@ -293,7 +309,7 @@ body{
                 <th>ID</th>
                 <th>Judul</th>
                 <th>Harga</th>
-               
+                
                 <th class="col-actions">Aksi</th>
               </tr>
             </thead>
@@ -307,7 +323,7 @@ body{
     <td><span class="chip chip--success">Publish</span></td>
     <td class="actions">
       <a href="view/editproduk.php?type=produk&id=<?= $p['id'] ?>" class="link">Edit</a>
-      <a href=" backend.php?type=produk&id=<?= $p['id'] ?>" class="link link--danger" onclick="return confirm('Apakah Anda yakin ingin menghapus produk ini?');">Hapus</a>
+      <a href="backend.php?type=produk&id=<?= $p['id'] ?>" class="link link--danger" onclick="return confirm('Apakah Anda yakin ingin menghapus produk ini?');">Hapus</a>
     </td>
   </tr>
   <?php endwhile; ?>
@@ -316,7 +332,7 @@ body{
         </div>
       </div>
 
-     
+      
     <!-- BLOG -->
     <section id="blog" class="section">
       <div class="section__header">
@@ -352,7 +368,7 @@ body{
                   <a href="#" class="link link--danger">Hapus</a>
                 </td>
               </tr>
-               <?php endwhile; ?>
+                <?php endwhile; ?>
               <!-- /Contoh -->
             </tbody>
           </table>
