@@ -204,7 +204,7 @@ background: #f7f7f7;
       <ul>
         <?php while($row = $related->fetch_assoc()): ?>
         <li>
-           <img src="assets/slider1.jpeg" alt="">
+           <img src="" alt="">
           <a href="blog.php?id=<?php echo $row['id']; ?>">
             <?php echo htmlspecialchars($row['judul']); ?>
         </li>

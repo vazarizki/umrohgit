@@ -1,4 +1,17 @@
 <?php
+// backend.php
+
+// PENTING: Selalu panggil session_start() di awal skrip
+session_start();
+
+// Periksa apakah pengguna sudah login
+// Jika tidak ada session 'admin_id', arahkan kembali ke halaman login.
+if (!isset($_SESSION['admin_id'])) {
+    header("Location: akun/login.php");
+    exit();
+}
+
+
 include "config.php";
 
 // Logika untuk menghapus produk
@@ -250,6 +263,8 @@ body{
       <a href="#produk" class="nav__link">Produk</a>
       <a href="#blog" class="nav__link">Blog</a>
       <a href="#about" class="nav__link">Tentang</a>
+      <a href="akun/register.php" class="nav__link">Tambah akun</a>
+      <a href="akun/logout.php" class="nav__link">Log Out</a>
     </nav>
     <div class="sidebar__foot">
       <small>© 2025</small>
@@ -364,7 +379,7 @@ body{
                 <td><?= $p['id']?></td>
                 <td><?= $p['judul']?></td>
                 <td class="actions">
-                  <a href="#" class="link">Edit</a>
+                  <a href="view/editblog.php?type=blog&id=<?= $p['id'] ?>" class="link">Edit</a>
                   <a href="#" class="link link--danger">Hapus</a>
                 </td>
               </tr>
@@ -375,47 +390,7 @@ body{
         </div>
       </div>
 
-      <!-- FORM BLOG -->
-      <div id="form-blog" class="card form">
-        <h3>Tulis / Edit Artikel</h3>
-        <!-- nanti ubah action ke file PHP: action="blogs.php" method="POST" -->
-        <form>
-          <div class="grid grid--2">
-            <div class="field">
-              <label class="label">Judul</label>
-              <input class="input" name="title" type="text" placeholder="Judul artikel" required />
-            </div>
-            <div class="field">
-              <label class="label">Slug (URL)</label>
-              <input class="input" name="slug" type="text" placeholder="judul-artikel" />
-            </div>
-            <div class="field">
-              <label class="label">Tanggal</label>
-              <input class="input" name="created_at" type="date" />
-            </div>
-            <div class="field">
-              <label class="label">Status</label>
-              <select class="input" name="status">
-                <option value="publish">Publish</option>
-                <option value="draft">Draft</option>
-              </select>
-            </div>
-          </div>
-          <div class="field">
-            <label class="label">URL Gambar (opsional)</label>
-            <input class="input" name="image_url" type="url" placeholder="https://…" />
-          </div>
-          <div class="field">
-            <label class="label">Konten</label>
-            <textarea class="input input--textarea" name="content" rows="10" placeholder="Tulis konten artikel di sini…"></textarea>
-          </div>
-          <div class="form__actions">
-            <button class="btn" type="submit">Simpan</button>
-            <button class="btn btn--ghost" type="reset">Reset</button>
-          </div>
-        </form>
-      </div>
-    </section>
+
 
     <!-- ABOUT -->
     <section id="about" class="section">
