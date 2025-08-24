@@ -1,106 +1,141 @@
-<?php include "config.php"; ?>
+<?php
+// produk.php
+
+// Pastikan file config.php sudah tersedia
+include "config.php";
+?>
 
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daftar Paket Travel Umroh & Haji</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Daftar Paket Travel — CMS Travel Umroh</title>
+    <style>
+        /* Menggunakan skema warna yang konsisten */
+        :root {
+            --primary: #ff7f00;   /* Orange */
+            --dark: #141414;      /* Hitam */
+            --light: #ffffff;     /* Putih */
+            --muted: #6b7280;     /* Abu */
+            --border: #e5e7eb;    /* Border abu-abu terang */
+            --shadow: 0 4px 6px rgba(0,0,0,0.05);
+            --radius: 10px;
+        }
+
+        /* Reset dan styling dasar */
+        * { box-sizing: border-box; }
+        html, body { margin: 0; padding: 0; }
+        body {
+            font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+            background: var(--light);
+            color: var(--dark);
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 2rem;
+            background: var(--primary);
+            color: var(--light);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .header p {
+            margin-top: .5rem;
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Container utama untuk daftar produk */
+        .product-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Kartu produk */
+        .product-card {
+            background: var(--light);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+
+        .product-card-body {
+            padding: 1.5rem;
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .product-card h3 {
+            margin: 1rem 0 0.5rem;
+            font-size: 1.2rem;
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        .product-card .harga {
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .product-card button {
+            background: var(--primary);
+            border: none;
+            color: var(--light);
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .product-card button:hover {
+            background: #e46f00;
+        }
+
+        .no-products {
+            grid-column: 1 / -1;
+            text-align: center;
+            color: var(--muted);
+            font-style: italic;
+            padding: 2rem;
+        }
+    </style>
 </head>
-
-<style>
-    :root {
-    --primary: #ff7f00;   /* Orange */
-    --dark: #141414;      /* Hitam */
-    --light: #ffffff;     /* Putih */
-    --muted: #6b7280;     /* Abu */
-}
-
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: var(--light);
-    color: var(--dark);
-}
-
-header {
-    text-align: center;
-    padding: 2rem;
-    background: var(--primary);
-    color: var(--light);
-}
-
-header h1 {
-    margin: 0;
-    font-size: 2rem;
-}
-
-header p {
-    margin-top: .5rem;
-    font-size: 1rem;
-}
-
-.product-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.5rem;
-    padding: 2rem;
-}
-
-.product-card {
-    background: var(--light);
-    border: 1px solid #eee;
-    border-radius: 10px;
-    padding: 1rem;
-    text-align: center;
-    transition: 0.3s;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-}
-
-.product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 10px rgba(0,0,0,0.1);
-}
-
-.product-card img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 8px;
-}
-
-.product-card h3 {
-    margin: 1rem 0 0.5rem;
-    font-size: 1.1rem;
-    color: var(--dark);
-}
-
-.product-card .harga {
-    font-weight: bold;
-    color: var(--primary);
-    margin-bottom: 1rem;
-}
-
-.product-card button {
-    background: var(--primary);
-    border: none;
-    color: var(--light);
-    padding: 0.5rem 1rem;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.product-card button:hover {
-    background: #e46f00;
-}
-
-</style>
-
 <body>
 
-<?php include "view/header.php"; ?>
+<?php include "view/header.php" ?>
+
+    <header class="header">
+        <h1>Daftar Paket Travel Wisata</h1>
+        <p>Pilihan paket terbaik untuk perjalanan ibadah Anda.</p>
+    </header>
 
     <main class="product-list">
         <?php
@@ -109,17 +144,22 @@ header p {
 
         if (mysqli_num_rows($result) > 0) {
             while ($p = mysqli_fetch_assoc($result)) {
+                // Pastikan jalur gambar dimulai dari direktori yang benar
+                $image_path = htmlspecialchars($p['gambar']);
+                
                 echo "
                 <div class='product-card'>
-                    <img src='{$p['gambar']}' alt='{$p['deskripsi']}'>
-                    <h3>{$p['judul']}</h3>
-                    <p class='harga'>{$p['harga']}</p>
-                    <button>Detail Paket</button>
+                    <img src='assets/{$image_path}' alt='Gambar {$p['judul']}'>
+                    <div class='product-card-body'>
+                        <h3>{$p['judul']}</h3>
+                        <p class='harga'>Rp. {$p['harga']} Juta</p>
+                        <button>Detail Paket</button>
+                    </div>
                 </div>
                 ";
             }
         } else {
-            echo "<p>Tidak ada paket tersedia.</p>";
+            echo "<p class='no-products'>Tidak ada paket yang tersedia saat ini.</p>";
         }
         ?>
     </main>

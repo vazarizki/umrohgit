@@ -334,7 +334,7 @@ body{
   <tr>
     <td><?= $p['id']?></td>
     <td><?= $p['judul']?></td>
-    <td>Rp. <?= $p['harga']?></td>
+    <td>Rp. <?= $p['harga']?> Juta</td>
     <td><span class="chip chip--success">Publish</span></td>
     <td class="actions">
       <a href="view/editproduk.php?type=produk&id=<?= $p['id'] ?>" class="link">Edit</a>

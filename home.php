@@ -955,7 +955,7 @@ $produk = $conn->query("SELECT * FROM produk");
             <div class="meta">
                 <span><?= htmlspecialchars($p['isi']) ?></span>
             </div>
-            <div class="price">Rp <?= htmlspecialchars($p['harga']) ?></div>
+            <div class="price">Rp <?= htmlspecialchars($p['harga']) ?> Juta</div>
             <div class="cta-row">
                 <button class="btn">Pesan</button>
                 <a class="btn outline" href="detailproduct.php?id=<?= htmlspecialchars($p['id']) ?>">Detail</a>
