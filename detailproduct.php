@@ -18,11 +18,12 @@ $p = $result->fetch_assoc();
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <title><?= htmlspecialchars($p['judul']) ?> - Detail Produk</title>
-   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title><?= htmlspecialchars($p['judul']) ?> | Taman Wisata Surga</title>
+    <meta name="description" content="<?= htmlspecialchars($p['isi']) ?>">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" xintegrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
 </head>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" xintegrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
 <style>
 /* Reset & base */
 * {
@@ -52,7 +53,7 @@ body {
 
 /* Bagian Produk */
 .product-detail {
-  flex: 3;
+  flex-grow: 1; /* Biarkan elemen ini tumbuh untuk mengambil sisa ruang */
   background: #ffffff;
   padding: 24px;
   border-radius: 12px;
@@ -80,6 +81,7 @@ body {
   font-size: 20px;
   color: #4a4a4a;
   line-height: 1.6;
+  
 }
 .harga {
   font-size:20px;
@@ -90,7 +92,8 @@ body {
 
 /* Bagian CTA */
 .cta-form {
-  flex: 1.5;
+  flex-shrink: 0; /* Hindari elemen ini menyusut */
+  width: 400px; /* Atur lebar tetap */
   position: sticky;
   top: 24px;
   background: #ffffff;
@@ -158,9 +161,10 @@ body {
 }
 
 /*tabs */
-.btn{
-  border-radius:0px !important;
+.btn {
+    border-radius:0px !important;
 }
+
 /* Responsive */
 @media (max-width: 1024px) {
   .container {
@@ -264,32 +268,33 @@ body {
 <!-- Tabs -->
 <div class="tabs">
   <p class="d-inline-flex gap-1">
-    <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseFaq" role="button" aria-expanded="false" aria-controls="collapseExample">
+    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFaq" aria-expanded="false" aria-controls="collapseFaq">
     Detail Produk
-    </a>
-
+    </button>
+  
+<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    Itinerary
+  </button>
+  </p>
 <div class="collapse" id="collapseFaq">
 <div class="card card-body">
 <ul>
     <li>
       <strong>Detail produk terkait</strong>
       <ul>
-        <li> <p class="product-desc"><?= nl2br(htmlspecialchars($p['deskripsi'])) ?></p></li>
+        <li> <div class="product-desc"><?= html_entity_decode($p['deskripsi']) ?></div></li>
     </li>
 </ul>
 </div>
 </div>
-  <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-    Itinerary
-  </button>
-  </p>
+
 <div class="collapse" id="collapseExample">
   <div class="card card-body">
 <ul>
     <li>
       <strong>Jadwal lengkap kegiatan dan keberangkatan</strong>
       <ul>
-        <li><p class="product-desc"><?= nl2br(htmlspecialchars($p['itinerary'])) ?></p></li>
+        <li><div class="product-desc"><?= html_entity_decode($p['itinerary']) ?></div></li>
       </ul>
     </li>
   </ul>
@@ -300,7 +305,7 @@ body {
 
   <!-- Bagian Kanan: CTA Form -->
   <div class="cta-form">
-    <h2>Tertarik?</h2>
+    <h2>Tertarik dengan program <strong> <?= htmlspecialchars($p['judul']) ?></strong></h2>
     <p>Hubungi kami untuk info lebih lanjut.</p>
     <form  method="POST" id="ctaForm">
       <input type="hidden" name="product" value="<?= htmlspecialchars($p['judul']) ?>">
@@ -311,6 +316,11 @@ body {
       <button type="submit">Kirim Pesan</button>
     </form>
   </div>
+</div>
+
+<div class="cta-form">
+  
+
 </div>
 
 

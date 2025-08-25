@@ -25,8 +25,10 @@ if ($result->num_rows > 0) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $judul = $_POST['judul'];
     $harga = $_POST['harga'];
+    // Ambil konten HTML dari Summernote
     $deskripsi = $_POST['deskripsi'];
     $isi = $_POST['isi'];
+    // Ambil konten HTML dari Summernote
     $itinerary = $_POST['itinerary'];
     $gambar_update = $data['gambar']; // Default: gunakan gambar lama
 
@@ -61,6 +63,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="id">
 <head>
     <title>Edit Produk</title>
+    <!-- Memuat CSS Summernote -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
@@ -201,7 +205,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <div>
                 <label for="deskripsi">Detail Produk</label>
-                <input type="text" id="deskripsi" name="deskripsi" value="<?= htmlspecialchars($data['deskripsi']) ?>" required>
+                <!-- Mengubah input text menjadi textarea dengan Summernote -->
+                <textarea id="summernote-deskripsi" name="deskripsi"><?= htmlspecialchars($data['deskripsi']) ?></textarea>
             </div>
             <div>
                 <label for="isi">Meta Deskripsi</label>
@@ -209,7 +214,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
              <div>
                 <label for="itinerary">Itinerary</label>
-                <input type="text" id="itinerary" name="itinerary" value="<?= htmlspecialchars($data['itinerary']) ?>" required>
+                <!-- Mengubah input text menjadi textarea dengan Summernote -->
+                <textarea id="summernote-itinerary" name="itinerary"><?= htmlspecialchars($data['itinerary']) ?></textarea>
             </div>
             <div>
                 <label for="current_gambar">Gambar Saat Ini:</label>
@@ -225,5 +231,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </form>
     </div>
+
+    <!-- Memuat jQuery (Diperlukan oleh Summernote) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    <!-- Memuat JavaScript Summernote -->
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Inisialisasi Summernote untuk Detail Produk
+            $('#summernote-deskripsi').summernote({
+                placeholder: 'Masukkan detail produk...',
+                tabsize: 2,
+                height: 200,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'italic', 'underline', 'clear']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['insert', ['link', 'hr']],
+                    ['view', ['fullscreen', 'codeview']]
+                ]
+            });
+
+            // Inisialisasi Summernote untuk Itinerary
+            $('#summernote-itinerary').summernote({
+                placeholder: 'Masukkan detail itinerary...',
+                tabsize: 2,
+                height: 200,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'italic', 'underline', 'clear']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['insert', ['link', 'hr']],
+                    ['view', ['fullscreen', 'codeview']]
+                ]
+            });
+        });
+    </script>
 </body>
 </html>
