@@ -775,7 +775,7 @@ $produk = $conn->query("SELECT * FROM produk");
 <div class="drawer" id="drawer">
   <div class="container">
     <div class="menu-col">
-     <a href="#paket">Paket</a>
+     <a href="listproduk.php">Paket</a>
       <a href="#trend">Promo</a>
       <a href="./listblog.php">Artikel</a>
       <a href="tentangkami.php">Tentang Kami</a>
@@ -792,7 +792,7 @@ $produk = $conn->query("SELECT * FROM produk");
       <b>Jalanmu Menuju Baitullah</b>
     </div>
     <nav class="menu">
-      <a href="#paket">Paket</a>
+      <a href="listproduk.php">Paket</a>
       <a href="#trend">Promo</a>
       <a href="./listblog.php">Artikel</a>
       <a href="tentangkami.php">Tentang Kami</a>

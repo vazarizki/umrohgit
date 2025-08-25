@@ -77,9 +77,15 @@ body {
 }
 
 .product-desc {
-  font-size: 15px;
+  font-size: 20px;
   color: #4a4a4a;
   line-height: 1.6;
+}
+.harga {
+  font-size:20px;
+}
+.harga strong{
+  color: #ff6200;
 }
 
 /* Bagian CTA */
@@ -252,88 +258,25 @@ body {
  <img src="assets/<?= htmlspecialchars($p['gambar']) ?>" alt="<?= htmlspecialchars($p['gambar']) ?>" class="product-img">
   
    <h1 class="product-title"><?= htmlspecialchars($p['judul']) ?></h1>
-    <p class="product-desc"><?= nl2br(htmlspecialchars($p['deskripsi'])) ?></p>
+    <h2 class="product-desc"><?= nl2br(htmlspecialchars($p['isi'])) ?></h2>
+    <p class="harga">Mulai dari: <strong> Rp. <?= nl2br(htmlspecialchars($p['harga'])) ?> Juta</strong></p>
 
 <!-- Tabs -->
 <div class="tabs">
   <p class="d-inline-flex gap-1">
     <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseFaq" role="button" aria-expanded="false" aria-controls="collapseExample">
-    FaQ
+    Detail Produk
     </a>
 
 <div class="collapse" id="collapseFaq">
 <div class="card card-body">
 <ul>
     <li>
-      <strong>Umum</strong>
+      <strong>Detail produk terkait</strong>
       <ul>
-        <li><strong>Q:</strong> Apa perbedaan Umroh dan Haji?<br>
-            <strong>A:</strong> Haji wajib dilakukan pada bulan Dzulhijjah, sedangkan Umroh bisa dilakukan kapan saja sepanjang tahun.</li>
-        <li><strong>Q:</strong> Apakah anak-anak boleh ikut?<br>
-            <strong>A:</strong> Boleh, tapi ibadahnya belum wajib hingga dewasa.</li>
-        <li><strong>Q:</strong> Apakah lansia bisa ikut?<br>
-            <strong>A:</strong> Bisa, selama kondisi kesehatan memungkinkan.</li>
-      </ul>
+        <li> <p class="product-desc"><?= nl2br(htmlspecialchars($p['deskripsi'])) ?></p></li>
     </li>
-
-    <li>
-      <strong>Pendaftaran & Administrasi</strong>
-      <ul>
-        <li><strong>Q:</strong> Dokumen apa saja yang dibutuhkan?<br>
-            <strong>A:</strong> Paspor (min. berlaku 7 bulan), KTP, KK, buku nikah (untuk pasangan), akta lahir (anak), pas foto.</li>
-        <li><strong>Q:</strong> Apakah perlu visa?<br>
-            <strong>A:</strong> Ya, visa resmi Arab Saudi diurus pihak travel.</li>
-        <li><strong>Q:</strong> Kapan sebaiknya mendaftar?<br>
-            <strong>A:</strong> Umroh minimal 1–2 bulan sebelum berangkat, Haji reguler bisa antre belasan tahun.</li>
-      </ul>
-    </li>
-
-    <li>
-      <strong>Biaya & Paket</strong>
-      <ul>
-        <li><strong>Q:</strong> Berapa biaya Umroh?<br>
-            <strong>A:</strong> Kisaran mulai 25–40 juta rupiah, tergantung fasilitas & musim.</li>
-        <li><strong>Q:</strong> Apa saja yang termasuk biaya?<br>
-            <strong>A:</strong> Tiket pesawat, hotel, transportasi, visa, makan, bimbingan ibadah.</li>
-        <li><strong>Q:</strong> Apakah ada biaya tambahan?<br>
-            <strong>A:</strong> Ya, seperti pembuatan paspor, vaksin meningitis, perlengkapan Umroh, bagasi lebih.</li>
-      </ul>
-    </li>
-
-    <li>
-      <strong>Kesehatan & Persiapan</strong>
-      <ul>
-        <li><strong>Q:</strong> Apakah wajib vaksin?<br>
-            <strong>A:</strong> Vaksin meningitis wajib, kadang ada tambahan sesuai aturan terbaru.</li>
-        <li><strong>Q:</strong> Bagaimana menjaga kesehatan?<br>
-            <strong>A:</strong> Minum cukup air, gunakan masker, bawa obat pribadi, jaga pola makan & istirahat.</li>
-        <li><strong>Q:</strong> Apa perlengkapan yang harus dibawa?<br>
-            <strong>A:</strong> Kain ihram, mukena, pakaian nyaman, sandal/sepatu ringan, obat pribadi, sajadah, Al-Qur’an.</li>
-      </ul>
-    </li>
-
-    <li>
-      <strong>Perjalanan & Fasilitas</strong>
-      <ul>
-        <li><strong>Q:</strong> Berapa lama Umroh?<br>
-            <strong>A:</strong> Rata-rata 9–12 hari tergantung paket.</li>
-        <li><strong>Q:</strong> Apakah ada pembimbing ibadah?<br>
-            <strong>A:</strong> Ya, travel resmi selalu menyediakan pembimbing.</li>
-        <li><strong>Q:</strong> Bagaimana akomodasi di Mekkah & Madinah?<br>
-            <strong>A:</strong> Hotel sesuai paket (bintang 3–5), dengan jarak tertentu dari Masjidil Haram/Nabawi.</li>
-      </ul>
-    </li>
-
-    <li>
-      <strong>Lain-lain</strong>
-      <ul>
-        <li><strong>Q:</strong> Bagaimana memastikan travel terpercaya?<br>
-            <strong>A:</strong> Pastikan travel berizin Kemenag, punya jadwal jelas & testimoni jamaah baik.</li>
-        <li><strong>Q:</strong> Apa yang dilakukan jika tertinggal rombongan?<br>
-            <strong>A:</strong> Tetap tenang, hubungi pembimbing/travel, dan menuju titik kumpul yang disepakati.</li>
-      </ul>
-    </li>
-  </ul>
+</ul>
 </div>
 </div>
   <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
@@ -344,104 +287,9 @@ body {
   <div class="card card-body">
 <ul>
     <li>
-      <strong>Hari 1: Keberangkatan dari Indonesia</strong>
+      <strong>Jadwal lengkap kegiatan dan keberangkatan</strong>
       <ul>
-        <li>Berkumpul di bandara (Soekarno Hatta / sesuai kota keberangkatan).</li>
-        <li>Briefing dari pembimbing dan tim travel.</li>
-        <li>Proses check-in dan imigrasi.</li>
-        <li>Penerbangan menuju Jeddah / Madinah (sesuai maskapai dan paket).</li>
-      </ul>
-    </li>
-
-    <li>
-      <strong>Hari 2: Tiba di Madinah</strong>
-      <ul>
-        <li>Tiba di Bandara Madinah.</li>
-        <li>Proses imigrasi & pengambilan bagasi.</li>
-        <li>Menuju hotel, check-in, istirahat.</li>
-        <li>Shalat berjamaah di Masjid Nabawi.</li>
-        <li>Ziarah ke Raudhah (sesuai jadwal).</li>
-      </ul>
-    </li>
-
-    <li>
-      <strong>Hari 3: Ibadah di Madinah</strong>
-      <ul>
-        <li>Shalat berjamaah di Masjid Nabawi.</li>
-        <li>Ziarah sekitar Madinah:
-          <ul>
-            <li>Makam Baqi’</li>
-            <li>Masjid Quba</li>
-            <li>Masjid Qiblatain</li>
-            <li>Jabal Uhud</li>
-          </ul>
-        </li>
-        <li>Kembali ke hotel & persiapan ibadah.</li>
-      </ul>
-    </li>
-
-    <li>
-      <strong>Hari 4: Madinah → Makkah (Umroh Pertama)</strong>
-      <ul>
-        <li>Shalat Subuh di Masjid Nabawi.</li>
-        <li>Berangkat menuju Makkah.</li>
-        <li>Miqat di Dzulhulaifah (Bir Ali) untuk niat Umroh.</li>
-        <li>Tiba di Makkah, check-in hotel.</li>
-        <li>Pelaksanaan Umroh pertama (Tawaf, Sa’i, Tahallul).</li>
-      </ul>
-    </li>
-
-    <li>
-      <strong>Hari 5: Ibadah di Masjidil Haram</strong>
-      <ul>
-        <li>Shalat berjamaah di Masjidil Haram.</li>
-        <li>Ibadah mandiri: Tawaf sunnah, tilawah, dzikir.</li>
-        <li>Waktu bebas untuk memperbanyak ibadah.</li>
-      </ul>
-    </li>
-
-    <li>
-      <strong>Hari 6: Ziarah Kota Makkah</strong>
-      <ul>
-        <li>Ziarah:
-          <ul>
-            <li>Jabal Tsur</li>
-            <li>Jabal Rahmah (Arafah)</li>
-            <li>Muzdalifah & Mina</li>
-            <li>Jabal Nur (Gua Hira – dilihat dari bawah)</li>
-          </ul>
-        </li>
-        <li>Kembali ke hotel.</li>
-        <li>Umroh sunnah (opsional, bersama pembimbing).</li>
-      </ul>
-    </li>
-
-    <li>
-      <strong>Hari 7: Ibadah di Masjidil Haram</strong>
-      <ul>
-        <li>Shalat berjamaah di Masjidil Haram.</li>
-        <li>Perbanyak ibadah (Tawaf sunnah, doa, dzikir).</li>
-        <li>Waktu bebas: tilawah, kajian, atau istirahat.</li>
-      </ul>
-    </li>
-
-    <li>
-      <strong>Hari 8: Tawaf Wada & Persiapan Pulang</strong>
-      <ul>
-        <li>Shalat Subuh di Masjidil Haram.</li>
-        <li>Pelaksanaan Tawaf Wada (perpisahan).</li>
-        <li>Packing, check-out hotel.</li>
-        <li>Menuju Jeddah; city tour opsional (Corniche, Masjid Terapung, pusat oleh-oleh).</li>
-        <li>Menuju bandara untuk kepulangan.</li>
-      </ul>
-    </li>
-
-    <li>
-      <strong>Hari 9: Tiba di Indonesia</strong>
-      <ul>
-        <li>Tiba di bandara tujuan Indonesia.</li>
-        <li>Imigrasi, pengambilan bagasi.</li>
-        <li>Program selesai.</li>
+        <li><p class="product-desc"><?= nl2br(htmlspecialchars($p['itinerary'])) ?></p></li>
       </ul>
     </li>
   </ul>

@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Memeriksa apakah ada file yang diunggah
     if (isset($_FILES['gambar_produk']) && $_FILES['gambar_produk']['error'] == 0) {
         // Mendefinisikan folder target untuk menyimpan gambar
-        $target_dir = "../assets/";
+        $target_dir = "../  assets/";
         // Mendapatkan nama file
         $gambar_name = basename($_FILES["gambar_produk"]["name"]);
         // Mendefinisikan path lengkap untuk file yang diunggah
@@ -19,10 +19,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $harga = $conn->real_escape_string($_POST['harga']);
             $deskripsi = $conn->real_escape_string($_POST['deskripsi_produk']);
             $isi = $conn->real_escape_string($_POST['isi_produk']);
+            $itinerary = $conn->real_escape_string($_POST['itinerary']);
             // Nama file gambar yang akan disimpan di database
             $gambar_db = $gambar_name;
 
-            $sql = "INSERT INTO produk (judul, harga, deskripsi, gambar, isi) VALUES ('$judul', '$harga', '$deskripsi', '$gambar_db', '$isi')";
+            $sql = "INSERT INTO produk (judul, harga, deskripsi, gambar, isi, itinerary) VALUES ('$judul', '$harga', '$deskripsi', '$gambar_db', '$isi', '$itinerary')";
             
             if ($conn->query($sql) === TRUE) {
                 // redirect ke backend.php setelah sukses
@@ -167,6 +168,11 @@ body {
         <div class="form-group">
             <label for="isi_produk">Detail Produk</label>
             <textarea id="isi_produk" name="isi_produk" rows="8" required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="itinerary">itinerary</label>
+            <textarea id="itinerary" name="itinerary" rows="8" required></textarea>
         </div>
 
         <div class="field">

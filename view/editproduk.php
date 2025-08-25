@@ -27,6 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $harga = $_POST['harga'];
     $deskripsi = $_POST['deskripsi'];
     $isi = $_POST['isi'];
+    $itinerary = $_POST['itinerary'];
     $gambar_update = $data['gambar']; // Default: gunakan gambar lama
 
     // Cek jika ada file gambar baru yang diunggah
@@ -43,9 +44,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    $stmt_update = $conn->prepare("UPDATE produk SET judul = ?, harga = ?, deskripsi = ?, isi = ?, gambar = ? WHERE id = ?");
+    $stmt_update = $conn->prepare("UPDATE produk SET judul = ?, harga = ?, deskripsi = ?, isi = ?, itinerary = ?, gambar = ? WHERE id = ?");
     // Perbaikan pada bind_param: sss ssi
-    $stmt_update->bind_param("sssssi", $judul, $harga, $deskripsi, $isi, $gambar_update, $id);
+    $stmt_update->bind_param("ssssssi", $judul, $harga, $deskripsi, $isi, $itinerary, $gambar_update, $id);
 
     if ($stmt_update->execute()) {
         header("Location: ../backend.php");
@@ -203,8 +204,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="text" id="deskripsi" name="deskripsi" value="<?= htmlspecialchars($data['deskripsi']) ?>" required>
             </div>
             <div>
-                <label for="isi">>Meta Deskripsi</label>
+                <label for="isi">Meta Deskripsi</label>
                 <input type="text" id="isi" name="isi" value="<?= htmlspecialchars($data['isi']) ?>" required>
+            </div>
+             <div>
+                <label for="itinerary">Itinerary</label>
+                <input type="text" id="itinerary" name="itinerary" value="<?= htmlspecialchars($data['itinerary']) ?>" required>
             </div>
             <div>
                 <label for="current_gambar">Gambar Saat Ini:</label>

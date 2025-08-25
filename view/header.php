@@ -275,8 +275,8 @@
 <div class="drawer" id="drawer">
   <div class="container">
     <div class="menu-col">
-     <a href="#paket">Paket</a>
-      <a href="#trend">Promo</a>
+     <a href="listproduk.php">Paket</a>
+      <a href="index.php#trend">Promo</a>
       <a href="#trend">Artikel</a>
       <a href="tentangkami.php">Tentang Kami</a>
       <a href="#kontak">Kontak</a>
@@ -288,12 +288,12 @@
 <header id="header">
   <div class="container nav">
     <div class="brand">
-      <a href="./home.php"><img src="assets/TWS TP.png" alt="Logo"></a>
+      <a href="./index.php"><img src="assets/TWS TP.png" alt="Logo"></a>
       <b>Jalanmu Menuju Baitullah</b>
     </div>
     <nav class="menu">
-      <a href="#paket">Paket</a>
-      <a href="#trend">Promo</a>
+      <a href="./listproduk.php">Paket</a>
+      <a href="./index.php#trend">Promo</a>
       <a href="./listblog.php">Artikel</a>
       <a href="tentangkami.php">Tentang Kami</a>
       <a href="#kontak">Kontak</a>

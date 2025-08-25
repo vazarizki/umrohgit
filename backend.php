@@ -257,7 +257,7 @@ body{
 </style>
 <body>
   <aside class="sidebar">
-    <div class="brand"><a href="home.php">CMS Umroh</a></div>
+    <div class="brand"><a href="index.php">CMS Umroh</a></div>
     <nav class="nav">
       <a href="#dashboard" class="nav__link active">Dashboard</a>
       <a href="#produk" class="nav__link">Produk</a>
