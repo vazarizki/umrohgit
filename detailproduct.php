@@ -19,6 +19,7 @@ $p = $result->fetch_assoc();
 <html lang="id">
 <head>
     <meta charset="UTF-8">
+    <link rel="shortcut icon" href="assets/TWS TP.png" type="image/x-icon">
     <title><?= htmlspecialchars($p['judul']) ?> | Taman Wisata Surga</title>
     <meta name="description" content="<?= htmlspecialchars($p['isi']) ?>">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" xintegrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
@@ -81,7 +82,7 @@ body {
   font-size: 20px;
   color: #4a4a4a;
   line-height: 1.6;
-  
+
 }
 .harga {
   font-size:20px;

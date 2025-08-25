@@ -9,8 +9,10 @@ include "config.php";
 <html lang="id">
 <head>
     <meta charset="utf-8" />
+    <meta name="description" content="Pilihan paket terbaik untuk perjalanan ibadah Anda.">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Daftar Paket Travel — CMS Travel Umroh</title>
+    <title> Paket Tour & Travel Tebaik — Taman Wisata Surga</title>
+    <link rel="shortcut icon" href="assets/TWS TP.png" type="image/x-icon">
     <style>
         /* Menggunakan skema warna yang konsisten */
         :root {
@@ -72,6 +74,9 @@ include "config.php";
             text-align: center;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            display: block; /* Agar seluruh kartu bisa diklik */
+            text-decoration: none; /* Menghilangkan garis bawah pada link */
+            color: var(--dark);
         }
 
         .product-card:hover {
@@ -104,7 +109,7 @@ include "config.php";
             font-size: 1.1rem;
         }
 
-        .product-card button {
+        .product-card-button {
             background: var(--primary);
             border: none;
             color: var(--light);
@@ -113,9 +118,11 @@ include "config.php";
             cursor: pointer;
             font-weight: 600;
             transition: background-color 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
         }
 
-        .product-card button:hover {
+        .product-card-button:hover {
             background: #e46f00;
         }
 
@@ -148,14 +155,14 @@ include "config.php";
                 $image_path = htmlspecialchars($p['gambar']);
                 
                 echo "
-                <div class='product-card'>
+                <a href='detailproduct.php?id={$p['id']}' class='product-card'>
                     <img src='assets/{$image_path}' alt='Gambar {$p['judul']}'>
                     <div class='product-card-body'>
                         <h3>{$p['judul']}</h3>
                         <p class='harga'>Rp. {$p['harga']} Juta</p>
-                        <button>Detail Paket</button>
+                        <span class='product-card-button'>Detail Paket</span>
                     </div>
-                </div>
+                </a>
                 ";
             }
         } else {
