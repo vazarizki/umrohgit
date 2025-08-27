@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Memeriksa apakah ada file yang diunggah
     if (isset($_FILES['gambar_produk']) && $_FILES['gambar_produk']['error'] == 0) {
         // Mendefinisikan folder target untuk menyimpan gambar
-        $target_dir = "../  assets/";
+        $target_dir = "../assets/";
         // Mendapatkan nama file
         $gambar_name = basename($_FILES["gambar_produk"]["name"]);
         // Mendefinisikan path lengkap untuk file yang diunggah
@@ -47,102 +47,121 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <link rel="icon" type="image/png" href="../assets/TWS TP.png">
     <title>Tambah Produk</title>
-    <link rel="stylesheet" href="style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Summernote CSS & JS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    
+    <style>
+    /* Reset */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: #f5f5f5;
+        color: #333;
+        line-height: 1.6;
+        padding: 20px;
+    }
+
+    /* Container */
+    .container {
+        max-width: 800px;
+        margin: 30px auto;
+        background: #fff;
+        padding: 40px;
+        border-radius: 16px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    }
+
+    /* Title */
+    .page-title {
+        text-align: center;
+        margin-bottom: 25px;
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #ff6600;
+    }
+
+    /* Form */
+    .form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-group label {
+        font-weight: 600;
+        margin-bottom: 6px;
+        color: #111;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        padding: 12px 14px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: border 0.2s ease;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+        border-color: #ff6600;
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(255,102,0,0.15);
+    }
+
+    /* Button */
+    .btn {
+        background: #ff6600;
+        color: #fff;
+        font-size: 1rem;
+        font-weight: 600;
+        border: none;
+        border-radius: 8px;
+        padding: 12px;
+        cursor: pointer;
+        transition: background 0.2s ease, transform 0.1s ease;
+    }
+
+    .btn:hover {
+        background: #e65500;
+        transform: translateY(-2px);
+    }
+
+    .btn:active {
+        transform: translateY(0);
+    }
+
+    /* Style untuk Summernote */
+    .note-editor {
+        border: 1px solid #ddd !important;
+        border-radius: 8px !important;
+    }
+    .note-toolbar {
+        background-color: #f8f9fa !important;
+        border-bottom: 1px solid #ddd !important;
+        border-radius: 8px 8px 0 0 !important;
+    }
+    .note-editable {
+        background-color: #fff !important;
+        color: #333 !important;
+    }
+    .note-popover .popover, .note-tooltip {
+        background-color: #fff !important;
+        border: 1px solid #ddd !important;
+    }
+    </style>
 </head>
-
-<style>
-/* Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #f5f5f5;
-  color: #333;
-  line-height: 1.6;
-  padding: 20px;
-}
-
-/* Container */
-.container {
-  max-width: 800px;
-  margin: 30px auto;
-  background: #fff;
-  padding: 40px;
-  border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-}
-
-/* Title */
-.page-title {
-  text-align: center;
-  margin-bottom: 25px;
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: #ff6600;
-}
-
-/* Form */
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-}
-
-.form-group label {
-  font-weight: 600;
-  margin-bottom: 6px;
-  color: #111;
-}
-
-.form-group input,
-.form-group textarea {
-  padding: 12px 14px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-size: 1rem;
-  transition: border 0.2s ease;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-  border-color: #ff6600;
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(255,102,0,0.15);
-}
-
-/* Button */
-.btn {
-  background: #ff6600;
-  color: #fff;
-  font-size: 1rem;
-  font-weight: 600;
-  border: none;
-  border-radius: 8px;
-  padding: 12px;
-  cursor: pointer;
-  transition: background 0.2s ease, transform 0.1s ease;
-}
-
-.btn:hover {
-  background: #e65500;
-  transform: translateY(-2px);
-}
-
-.btn:active {
-  transform: translateY(0);
-}
-
-</style>
 
 <body>
 
@@ -171,7 +190,7 @@ body {
         </div>
 
         <div class="form-group">
-            <label for="itinerary">itinerary</label>
+            <label for="itinerary">Itinerary</label>
             <textarea id="itinerary" name="itinerary" rows="8" required></textarea>
         </div>
 
@@ -183,5 +202,43 @@ body {
         <button type="submit" class="btn">Simpan</button>
     </form>
 </main>
+
+<!-- jQuery, Bootstrap JS, dan Summernote JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+<script>
+    // Inisialisasi Summernote pada textarea dengan ID 'isi_produk' dan 'itinerary'
+    $(document).ready(function() {
+        $('#isi_produk').summernote({
+            placeholder: 'Tulis detail produk di sini...',
+            tabsize: 2,
+            height: 300,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture', 'video']],
+                ['view', ['fullscreen', 'codeview', 'help']]
+            ]
+        });
+        $('#itinerary').summernote({
+            placeholder: 'Tulis itinerary di sini...',
+            tabsize: 2,
+            height: 300,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture', 'video']],
+                ['view', ['fullscreen', 'codeview', 'help']]
+            ]
+        });
+    });
+</script>
 </body>
 </html>
