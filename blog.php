@@ -29,9 +29,10 @@ $related = $conn->query("SELECT id, judul FROM blog WHERE id != $id ORDER BY id 
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="shortcut icon" href="assets/TWS TP.png" type="image/x-icon">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="<?= $p['judul'] ?>">
-  <title>Understanding The History of Malaysia’s Independence Day</title>
+  <meta name="description" content="<?= $p['deskripsi'] ?>">
+  <title><?= $p['judul'] ?></title>
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -146,11 +147,11 @@ body {
     <article class="article">
       <h1><?= $p['judul'] ?></h1>
       <p class="date">27.03.2025</p>
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSniEBDss5kMO7ctAHtNVeRNJ0HZ-S0oIV-Iw&s" alt="Malaysia Flag" class="article-img">
+      <img src="assets/<?= htmlspecialchars($p['gambar']) ?>" alt="Malaysia Flag" class="article-img">
 
-      <p><?= nl2br($p['isi']) ?></p>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/f/f7/Flags_of_Malaysia.jpg" alt="Flags of Malaysia" class="article-img">
-      <p>The journey to Malaysian independence was a long and challenging process involving years of struggle and negotiations. It began with the formation of political parties like the United Malays National Organisation (UMNO) and the Malaysian Chinese Association (MCA), which pushed for self-governance. After World War II, the movement gained momentum, eventually leading to formal independence negotiations with the British government.</p>
+      <div>
+        <p><?= $p['isi'] ?></p>
+      </div>
     </article>
 
     <!-- Sidebar -->
@@ -159,11 +160,12 @@ body {
       <ul>
         <?php while($row = $related->fetch_assoc()): ?>
         <li>
-           <img src="assets/slider1.jpeg" alt="">
+            <img src="assets/<?= htmlspecialchars($p['gambar']) ?>" alt="">
           <a href="blog.php?id=<?php echo $row['id']; ?>">
             <?php echo htmlspecialchars($row['judul']); ?>
+            
         </li>
-         <?php endwhile; ?>
+          <?php endwhile; ?>
       </ul>
     </aside>
   </main>

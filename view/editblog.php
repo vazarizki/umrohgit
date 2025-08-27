@@ -22,7 +22,7 @@ if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
     // Ambil data blog (termasuk path gambar) dari database
-    $stmt = $conn->prepare("SELECT judul, isi, gambar FROM blog WHERE id = ?");
+    $stmt = $conn->prepare("SELECT judul, isi, gambar, deskripsi FROM blog WHERE id = ?");
     $stmt->bind_param("i", $id);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -31,6 +31,7 @@ if (isset($_GET['id'])) {
         $blog_data = $result->fetch_assoc();
         $judul = $blog_data['judul'];
         $isi = $blog_data['isi'];
+        $deskripsi = $blog_data['deskripsi'];
         $current_image = $blog_data['gambar']; // Ambil path gambar yang ada
     } else {
         $message = "Artikel tidak ditemukan.";
@@ -46,12 +47,13 @@ if (isset($_GET['id'])) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id = $_POST['id'];
     $judul_baru = $_POST['judul'];
+    $deskripsi_baru = $_POST['deskripsi'];
     $isi_baru = $_POST['isi'];
     $new_image_path = $current_image; // Secara default, gunakan gambar lama
 
     // Validasi input
-    if (empty($judul_baru) || empty($isi_baru)) {
-        $message = "Judul dan isi artikel tidak boleh kosong.";
+    if (empty($judul_baru) || empty($isi_baru) || empty($deskripsi_baru)) {
+        $message = "Judul, deskripsi, dan isi artikel tidak boleh kosong.";
         $message_color = "red";
     } else {
         // Cek apakah ada file gambar baru yang diunggah
@@ -85,8 +87,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         // Gunakan prepared statement untuk keamanan
-        $stmt = $conn->prepare("UPDATE blog SET judul = ?, isi = ?, gambar = ? WHERE id = ?");
-        $stmt->bind_param("sssi", $judul_baru, $isi_baru, $new_image_path, $id);
+        $stmt = $conn->prepare("UPDATE blog SET judul = ?, isi = ?, gambar = ?, deskripsi = ? WHERE id = ?");
+        $stmt->bind_param("ssssi", $judul_baru, $isi_baru, $new_image_path, $deskripsi_baru, $id);
 
         if ($stmt->execute()) {
             $message = "Artikel berhasil diperbarui!";
@@ -94,6 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Perbarui data yang ditampilkan di form
             $judul = $judul_baru;
             $isi = $isi_baru;
+            $deskripsi = $deskripsi_baru;
             $current_image = $new_image_path;
         } else {
             $message = "Error: " . $stmt->error;
@@ -110,6 +113,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Edit Artikel — CMS Travel Umroh</title>
+    
+    <!-- Summernote CSS & JS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    
     <style>
         /* Menggunakan skema warna yang sama untuk konsistensi */
         :root{
@@ -215,7 +223,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             resize: vertical;
             min-height: 250px;
         }
-
+        
+        /* Style untuk Summernote */
+        .note-editor {
+            border: 1px solid var(--border) !important;
+            border-radius: 10px !important;
+            background: rgba(255, 255, 255, 0.04) !important;
+        }
+        .note-toolbar.panel-default {
+            background-color: var(--panel-2) !important;
+            border-bottom: 1px solid var(--border) !important;
+        }
+        .note-editable {
+            background-color: rgba(255, 255, 255, 0.04) !important;
+            color: var(--text) !important;
+            padding: 12px !important;
+        }
+        .note-placeholder {
+            color: rgba(255, 255, 255, 0.3) !important;
+        }
+        .note-popover, .note-tooltip {
+            background-color: var(--panel-2) !important;
+            border: 1px solid var(--border) !important;
+            color: var(--text) !important;
+        }
+        .note-popover .btn, .note-tooltip .btn {
+            background-color: var(--panel-2) !important;
+            color: var(--text) !important;
+        }
+        
         .image-preview {
             max-width: 100%;
             height: auto;
@@ -272,10 +308,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="judul" class="label">Judul Artikel</label>
                 <input type="text" id="judul" name="judul" class="input" value="<?= htmlspecialchars($judul) ?>" required>
             </div>
+            
+            <div class="form-group">
+                <label for="deskripsi" class="label">Meta Deskripsi</label>
+                <input type="text" id="deskripsi" name="deskripsi" class="input" value="<?= htmlspecialchars($deskripsi) ?>" required>
+            </div>
 
             <div class="form-group">
                 <label for="isi" class="label">Isi Artikel</label>
-                <textarea id="isi" name="isi" class="input input--textarea" required><?= htmlspecialchars($isi) ?></textarea>
+                <textarea id="summernote" name="isi" class="input input--textarea" required><?= htmlspecialchars($isi) ?></textarea>
             </div>
             
             <div class="form-group">
@@ -296,5 +337,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </form>
         <?php endif; ?>
     </div>
+
+<!-- jQuery, Bootstrap JS, dan Summernote JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+<script>
+    // Inisialisasi Summernote pada textarea dengan ID 'summernote'
+    $(document).ready(function() {
+        $('#summernote').summernote({
+            placeholder: 'Tulis isi artikel di sini...',
+            tabsize: 2,
+            height: 300,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture', 'video']],
+                ['view', ['fullscreen', 'codeview', 'help']]
+            ]
+        });
+    });
+</script>
 </body>
 </html>

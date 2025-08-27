@@ -421,7 +421,7 @@ $produk = $conn->query("SELECT * FROM produk");
   }
 
   .trend-card .thumb img {
-    height: 160px;
+    height: 200px;
     object-fit: cover;
     width: 100%;
   }
@@ -430,8 +430,9 @@ $produk = $conn->query("SELECT * FROM produk");
     padding: .9rem;
   }
 
-  .trend-card .title {
-    font-weight: 800;
+  .trend-card .title h2{
+    font-weight:500;
+    font-size:20px;
     color: var(--dark);
   }
 
@@ -816,7 +817,7 @@ $produk = $conn->query("SELECT * FROM produk");
           <p class="muted">Penerbangan langsung, hotel dekat Masjidil Haram & Nabawi.</p>
           <div style="display:flex;gap:.6rem;flex-wrap:wrap">
             <button class="btn" onclick="scrollToEl('#paket')">Lihat Paket</button>
-            <a class="btn outline" href="#kontak">Konsultasi Gratis</a>
+            <a class="btn outline" href="https://wa.link/1cz4on">Konsultasi Gratis</a>
           </div>
         </div>
         <div class="img-wrap">
@@ -850,7 +851,7 @@ $produk = $conn->query("SELECT * FROM produk");
           <p class="muted">Pendaftaran mudah, pembayaran aman, pendampingan ibadah sampai tuntas.</p>
           <div style="display:flex;gap:.6rem;flex-wrap:wrap">
             <button class="btn" onclick="scrollToEl('#bannerApp')">Download Brosur</button>
-            <a class="btn outline" href="#kontak">Hubungi Admin</a>
+            <a class="btn outline" href="https://wa.link/1cz4on">Hubungi Admin</a>
           </div>
         </div>
         <div class="img-wrap">
@@ -874,44 +875,15 @@ $produk = $conn->query("SELECT * FROM produk");
     <!-- 6+ dummy cards -->
     <?php while($p = $blog->fetch_assoc()): ?>
     <article class="trend-card">
-      <div class="thumb"><img src="<?= $p['gambar'] ?>" alt=""></div>
+      <div class="thumb"><img src="assets/<?= $p['gambar'] ?>" alt=""></div>
       <div class="body">
-        <div class="title"><a href="blog.php?id=<?= $p['id'] ?>"><?= $p['judul'] ?></a></div>
+        <div class="title">
+          <h2><a href="blog.php?id=<?= $p['id'] ?>"><?= $p['judul'] ?></a></h2>
+        </div>
         <p class="small"><?= $p['deskripsi'] ?></p>
       </div>
     </article>
     <?php endwhile; ?>
-    
-    <?php while($p = $blog->fetch_assoc()): ?>
-    <article class="trend-card">
-      <div class="thumb"><img src="<?= $p['gambar'] ?>" alt=""></div>
-      <div class="body">
-        <div class="title"><a href="blog.php?id=<?= $p['id'] ?>"><?= $p['judul'] ?></a></div>
-        <p class="small"><?= $p['deskripsi'] ?></p>
-      </div>
-    </article>
-    <?php endwhile; ?>
-
-    <?php while($p = $blog->fetch_assoc()): ?>
-    <article class="trend-card">
-      <div class="thumb"><img src="<?= $p['gambar'] ?>" alt=""></div>
-      <div class="body">
-        <div class="title"><a href="blog.php?id=<?= $p['id'] ?>"><?= $p['judul'] ?></a></div>
-        <p class="small"><?= $p['deskripsi'] ?></p>
-      </div>
-    </article>
-    <?php endwhile; ?>
-
-    <?php while($p = $blog->fetch_assoc()): ?>
-    <article class="trend-card">
-      <div class="thumb"><img src="<?= $p['gambar'] ?>" alt=""></div>
-      <div class="body">
-        <div class="title"><a href="blog.php?id=<?= $p['id'] ?>"><?= $p['judul'] ?></a></div>
-        <p class="small"><?= $p['deskripsi'] ?></p>
-      </div>
-    </article>
-      <?php endwhile; ?>
-
   </div>
 </section>
 
