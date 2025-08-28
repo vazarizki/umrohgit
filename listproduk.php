@@ -153,9 +153,9 @@ include "config.php";
             while ($p = mysqli_fetch_assoc($result)) {
                 // Pastikan jalur gambar dimulai dari direktori yang benar
                 $image_path = htmlspecialchars($p['gambar']);
-                
+                $product_id = base64_encode($p['id']);
                 echo "
-                <a href='detailproduct.php?id={$p['id']}' class='product-card'>
+                <a href='detailproduct?id=".$product_id."' class='product-card'>
                     <img src='assets/{$image_path}' alt='Gambar {$p['judul']}'>
                     <div class='product-card-body'>
                         <h3>{$p['judul']}</h3>

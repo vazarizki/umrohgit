@@ -5,7 +5,8 @@ if (!isset($_GET['id'])) {
     die("Produk tidak ditemukan.");
 }
 
-$id = (int) $_GET['id'];
+$id = $_GET['id'];
+$id = base64_decode($id);
 $sql = "SELECT * FROM produk WHERE id=$id LIMIT 1";
 $result = $conn->query($sql);
 

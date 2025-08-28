@@ -776,10 +776,10 @@ $produk = $conn->query("SELECT * FROM produk");
 <div class="drawer" id="drawer">
  <div class="container">
    <div class="menu-col">
-    <a href="listproduk.php">Paket</a>
-    <a href="#trend">Promo</a>
-    <a href="./listblog.php">Artikel</a>
-    <a href="tentangkami.php">Tentang Kami</a>
+    <a href="listproduk">Paket</a>
+    <a href="/#trend">Promo</a>
+    <a href="./listblog">Artikel</a>
+    <a href="tentangkami">Tentang Kami</a>
     <a href="#kontak">Kontak</a>
    </div>
  </div>
@@ -793,8 +793,8 @@ $produk = $conn->query("SELECT * FROM produk");
      <b>Jalanmu Menuju Baitullah</b>
    </div>
    <nav class="menu">
-     <a href="listproduk.php">Paket</a>
-     <a href="#trend">Promo</a>
+     <a href="listproduk">Paket</a>
+     <a href="/#trend">Promo</a>
      <a href="./listblog.php">Artikel</a>
      <a href="tentangkami.php">Tentang Kami</a>
      <a href="#kontak">Kontak</a>
@@ -930,7 +930,7 @@ $produk = $conn->query("SELECT * FROM produk");
            </div>
            <div class="price">Rp <?= htmlspecialchars($p['harga']) ?> Juta</div>
            <div class="cta-row">
-               <button class="btn">Pesan</button>
+               <button class="btn" >Pesan</button>
                <a class="btn outline" href="detailproduct.php?id=<?= htmlspecialchars($p['id']) ?>">Detail</a>
            </div>
        </div>
@@ -1005,7 +1005,7 @@ $produk = $conn->query("SELECT * FROM produk");
 </section>
    -->
 
-   
+
 <!-- Partners & CTA -->
 <section class="container reveal" id="kontak">
  <div class="section-head">
