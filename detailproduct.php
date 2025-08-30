@@ -265,7 +265,7 @@ body {
   
    <h1 class="product-title"><?= htmlspecialchars($p['judul']) ?></h1>
     <h2 class="product-desc"><?= nl2br(htmlspecialchars($p['isi'])) ?></h2>
-    <p class="harga">Mulai dari: <strong> Rp. <?= nl2br(htmlspecialchars($p['harga'])) ?> Juta</strong></p>
+    <p class="harga">Mulai dari: <strong> Rp. <?= nl2br(htmlspecialchars($p['harga'])) ?> </strong></p>
 
 <!-- Tabs -->
 <div class="tabs">

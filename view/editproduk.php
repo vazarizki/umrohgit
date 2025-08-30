@@ -63,7 +63,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="id">
 <head>
     <title>Edit Produk</title>
-    <!-- Memuat CSS Summernote -->
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
@@ -201,20 +200,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <div>
                 <label for="harga">Harga:</label>
-                <input type="number" id="harga" name="harga" value="<?= htmlspecialchars($data['harga']) ?>" required>
+                <input type="text" id="harga" name="harga" value="<?= htmlspecialchars($data['harga']) ?>" required>
             </div>
             <div>
                 <label for="deskripsi">Detail Produk</label>
-                <!-- Mengubah input text menjadi textarea dengan Summernote -->
                 <textarea id="summernote-deskripsi" name="deskripsi"><?= htmlspecialchars($data['deskripsi']) ?></textarea>
             </div>
             <div>
                 <label for="isi">Meta Deskripsi</label>
                 <input type="text" id="isi" name="isi" value="<?= htmlspecialchars($data['isi']) ?>" required>
             </div>
-             <div>
+            <div>
                 <label for="itinerary">Itinerary</label>
-                <!-- Mengubah input text menjadi textarea dengan Summernote -->
                 <textarea id="summernote-itinerary" name="itinerary"><?= htmlspecialchars($data['itinerary']) ?></textarea>
             </div>
             <div>
@@ -232,10 +229,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </form>
     </div>
 
-    <!-- Memuat jQuery (Diperlukan oleh Summernote) -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
-    <!-- Memuat JavaScript Summernote -->
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 
     <script>

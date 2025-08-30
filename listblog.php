@@ -186,7 +186,7 @@ background: #f7f7f7;
   <a href="blog.php?id=<?= $row['id'] ?>" style="display:flex; text-decoration:none; color:inherit;">
     <img src="assets/<?= $row['gambar'] ?>" alt="Gambar Artikel">
     <div class="card-content">
-      <span class="category"><?= htmlspecialchars($row['deskripsi']) ?></span>
+      <span class="category">TWS Blog</span>
       <h2><?= htmlspecialchars($row['judul']) ?></h2>
     </div>
   </a>
