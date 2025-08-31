@@ -171,5 +171,7 @@ include "config.php";
         ?>
     </main>
 
+    <?php include "view/footer.php" ?>
+
 </body>
 </html>

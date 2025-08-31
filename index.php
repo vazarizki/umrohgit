@@ -70,6 +70,11 @@ $produk = $conn->query("SELECT * FROM produk");
  .muted {
    color: var(--muted);
  }
+ .muted img{
+  width: 30px;
+  display:inline;
+ }
+
 
  .btn {
    display: inline-flex;
@@ -795,8 +800,8 @@ $produk = $conn->query("SELECT * FROM produk");
    <nav class="menu">
      <a href="listproduk">Paket</a>
      <a href="/#trend">Promo</a>
-     <a href="./listblog.php">Artikel</a>
-     <a href="tentangkami.php">Tentang Kami</a>
+     <a href="./listblog">Artikel</a>
+     <a href="tentangkami">Tentang Kami</a>
      <a href="#kontak">Kontak</a>
      <button class="btn" onclick="scrollToEl('#paket')">✈️ Cek Paket</button>
    </nav>
@@ -887,7 +892,7 @@ $produk = $conn->query("SELECT * FROM produk");
  </div>
 </section>
 
-<!-- Feature Icons -->
+<!-- Feature Icons 
 <section id="fitur" class="container reveal">
  <div class="section-head">
    <h2>Layanan yang disediakan Taman Wisata Surga</h2>
@@ -900,6 +905,7 @@ $produk = $conn->query("SELECT * FROM produk");
    <div class="feature"><img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=1200&auto=format&fit=crop" alt=""><div><b>Poin Jamaah</b><div class="muted small">Kumpulkan & tukar</div></div></div>
  </div>
 </section>
+   -->
 
 <!-- Product Cards -->
 <section id="paket" class="container reveal show">
@@ -942,21 +948,29 @@ $produk = $conn->query("SELECT * FROM produk");
 </div>
 </section>
 
-<!-- Banner App 
+
+ 
 <section id="bannerApp" class="container reveal">
  <div class="banner">
    <div>
-     <h2>akses lebih mudah dengan aplikasi Barokah Travel</h2>
+     <h2>Hubungi Kami</h2>
      <p class="muted">Pantau jadwal, pembayaran, & informasi keberangkatan dalam satu genggaman.</p>
+     <p class="muted" > 
+       <p class="muted"><img src="assets/location.png" alt=""> Jl. Sayikuro</p>
+       <p class="muted">📞 : </p> 
+       <p class="muted"><img src="assets/instagram.png" alt="instagram"> tamanwisatasurga</p>
+       <p class="muted"><img src="assets/facebook.png" alt="facebook"> tamanwisatasurga</p>
+       <p class="muted"><img src="assets/tiktok.png" alt="tiktok"> tamanwisata.surga</p>
+       <p class="muted"><img src="assets/youtube.png" alt="youtube"> tamanwisatasurga</p>
+     </p>
      <div style="display:flex;gap:.6rem;flex-wrap:wrap">
-       <a class="btn" href="#">Unduh di App Store</a>
-       <a class="btn outline" href="#">Dapatkan di Google Play</a>
+       <a class="btn" href="#">📞 HUBUNGI SEKARANG</a>
      </div>
    </div>
    <div class="phone"><img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=800&auto=format&fit=crop" alt="App Mockup"></div>
  </div>
 </section>
--->
+
 
 <!-- Promo / Entertainment style -->
 <section id="promo" class="container reveal">
@@ -975,7 +989,7 @@ $produk = $conn->query("SELECT * FROM produk");
        <div class="overlay"><div><b>Kuis Interaktif</b><div class="muted" style="color:#f3f4f6">Menangkan voucher potongan</div></div></div>
      </article>
      <article class="promo">
-       <img src="https://images.unsplash.com/photo-1483721310020-03333e577078?q=80&w=1200&auto=format&fit=crop" alt="">
+       <img src="assets/kajiandoa.jpeg" alt="">
        <div class="overlay"><div><b>Kajian & Doa-Doa</b><div class="muted" style="color:#f3f4f6">Streaming setiap pekan</div></div></div>
      </article>
    </div>
@@ -1006,7 +1020,7 @@ $produk = $conn->query("SELECT * FROM produk");
    </article>
  </div>
 </section>
-   -->
+
 
 
 <!-- Partners & CTA -->
@@ -1032,14 +1046,14 @@ $produk = $conn->query("SELECT * FROM produk");
 <footer>
  <div class="container foot">
    <div>
-     <div class="brand" style="margin-bottom:.6rem"><img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=200&auto=format&fit=crop" alt=""><b style="color:#fff">Barokah Travel</b></div>
+     <div class="brand" style="margin-bottom:.6rem"><img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=200&auto=format&fit=crop" alt=""><b style="color:#fff">Taman Wisata Surga</b></div>
      <p class="muted">Penyelenggara perjalanan ibadah Umroh & Haji. Layanan ramah, aman, dan sesuai syariah.</p>
    </div>
    <div><h4>Layanan</h4><a href="#paket">Paket Umroh</a><br><a href="#fitur">Layanan</a><br><a href="#promo">Promo</a></div>
    <div><h4>Perusahaan</h4><a href="#">Tentang</a><br><a href="#artikel">Artikel</a><br><a href="#">Kebijakan Privasi</a></div>
-   <div><h4>Kontak</h4><span class="muted">Jl. Contoh No.123, Jakarta</span><br><a href="#">info@barokahtravel.id</a><br><a href="#">+62 812-0000-0000</a></div>
+   <div><h4>Kontak</h4><span class="muted">Jl. Contoh No.123, Jakarta</span><br><a href="#">info@Tamanwisatasurga.id</a><br><a href="#">+62 812-0000-0000</a></div>
  </div>
- <div class="container copyright">© 2025 Barokah Travel — Dummy desain gabungan modern.</div>
+ <div class="container copyright">© 2025 Taman Wisata Surga</div>
 </footer>
 
 <script>

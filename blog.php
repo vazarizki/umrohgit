@@ -91,6 +91,7 @@ body {
   background: #f8f8f8;
   padding: 15px;
   border-radius: 6px;
+  margin-top:40px;
 }
 
 .sidebar h3 {
@@ -99,7 +100,7 @@ body {
 }
 
 .sidebar ul {
-  list-style: none;
+
   padding: 0;
 }
 
@@ -159,8 +160,7 @@ body {
       <h3>Recent posts</h3>
       <ul>
         <?php while($row = $related->fetch_assoc()): ?>
-        <li>
-            <img src="assets/<?= htmlspecialchars($p['gambar']) ?>" alt="">
+        <li>   
           <a href="blog.php?id=<?php echo $row['id']; ?>">
             <?php echo htmlspecialchars($row['judul']); ?>
             

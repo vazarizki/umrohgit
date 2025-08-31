@@ -275,11 +275,11 @@
 <div class="drawer" id="drawer">
   <div class="container">
     <div class="menu-col">
-     <a href="listproduk.php">Paket</a>
+     <a href="listproduk">Paket</a>
       <a href="index.php#trend">Promo</a>
       <a href="#trend">Artikel</a>
-      <a href="tentangkami.php">Tentang Kami</a>
-      <a href="#kontak">Kontak</a>
+      <a href="tentangkami">Tentang Kami</a>
+      <a href="./#bannerApp">Kontak</a>
     </div>
   </div>
 </div>
@@ -288,15 +288,15 @@
 <header id="header">
   <div class="container nav">
     <div class="brand">
-      <a href="./index.php"><img src="assets/TWS TP.png" alt="Logo"></a>
+      <a href="./"><img src="assets/TWS TP.png" alt="Logo"></a>
       <b>Jalanmu Menuju Baitullah</b>
     </div>
     <nav class="menu">
-      <a href="./listproduk.php">Paket</a>
-      <a href="./index.php#trend">Promo</a>
-      <a href="./listblog.php">Artikel</a>
-      <a href="tentangkami.php">Tentang Kami</a>
-      <a href="#kontak">Kontak</a>
+      <a href="./listproduk">Paket</a>
+      <a href="./#trend">Promo</a>
+      <a href="./listblog">Artikel</a>
+      <a href="tentangkami">Tentang Kami</a>
+      <a href="./#bannerApp">Kontak</a>
       <button class="btn" onclick="scrollToEl('#paket')">✈️ Cek Paket</button>
     </nav>
     <button class="hamburger" id="hamburger" aria-label="Menu"><span></span></button>

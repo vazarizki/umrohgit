@@ -45,7 +45,7 @@ body {
 
 .hero img{
 width: 100%;
-height: 300px;
+height: 400px;
 }
 
 /* Layout */
@@ -114,6 +114,7 @@ background: #f7f7f7;
   background: ;
   border-radius: 8px;
   padding: 15px;
+  margin-top:50px;
 }
 
 .sidebar h3 {
@@ -171,7 +172,7 @@ background: #f7f7f7;
   <?php include "view/header.php"; ?>
 
   <div class="hero">
-    <img src="assets/slider1.jpeg" alt="">
+    <img src="assets/kajiandoa.jpeg" alt="">
   </div>
 
   
